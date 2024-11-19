@@ -28,5 +28,6 @@ public class stepDefs {
     @And("{actor} see information about {string}")
     public void userSeeInformationAbout(Actor actor, String arg0) {
         actor.attemptsTo(function.about(arg0));
+        actor.attemptsTo(function.assertContent());
     }
 }

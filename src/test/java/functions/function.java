@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
+import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.webdriver.WebDriverFacade;
 import org.openqa.selenium.Keys;
 import pages.pageLocator;
@@ -31,5 +32,10 @@ public class function {
 
     public static Performable assertTittle(String arg0){
         return Ensure.that(TheWebPage.title()).containsIgnoringCase(arg0);
+    }
+
+    public static Performable assertContent(){
+        Target target = pageLocator.CONTENT_JAKARTA;
+        return Ensure.that(target).isDisplayed();
     }
 }
