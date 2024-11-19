@@ -6,25 +6,18 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.actions.Open;
-import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import net.thucydides.core.webdriver.WebDriverFacade;
-
-import static net.serenitybdd.core.Serenity.getDriver;
 
 public class stepDefs {
     @Given("{actor} Open google")
     public void openGoogle(Actor actor) {
-        actor.attemptsTo(Open.browserOn().thePageNamed("page.google"));
-        WebDriverFacade driverFacade = (WebDriverFacade) getDriver();
-        driverFacade.manage().window().maximize();
+        function.maximized();
+        actor.attemptsTo(function.openBrowser("page.google"));
     }
 
 
     @When("{actor} see title must be {string}")
     public void userSeeTitleMustBe(Actor actor, String arg0) {
-        actor.attemptsTo(Ensure.that(TheWebPage.title()).containsIgnoringCase(arg0));
+        actor.attemptsTo(function.assertTittle(arg0));
     }
 
     @Then("{actor} search {string}")
@@ -34,6 +27,6 @@ public class stepDefs {
 
     @And("{actor} see information about {string}")
     public void userSeeInformationAbout(Actor actor, String arg0) {
-        actor.attemptsTo(Ensure.that(TheWebPage.title()).containsIgnoringCase(arg0));
+        actor.attemptsTo(function.about(arg0));
     }
 }
