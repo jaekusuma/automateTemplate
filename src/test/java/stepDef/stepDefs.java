@@ -9,11 +9,16 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
+import net.thucydides.core.webdriver.WebDriverFacade;
+
+import static net.serenitybdd.core.Serenity.getDriver;
 
 public class stepDefs {
     @Given("{actor} Open google")
     public void openGoogle(Actor actor) {
         actor.attemptsTo(Open.browserOn().thePageNamed("page.google"));
+        WebDriverFacade driverFacade = (WebDriverFacade) getDriver();
+        driverFacade.manage().window().maximize();
     }
 
 
