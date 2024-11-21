@@ -6,7 +6,6 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.webdriver.WebDriverFacade;
 import org.openqa.selenium.Keys;
 import pages.pageLocator;
@@ -34,8 +33,18 @@ public class function {
         return Ensure.that(TheWebPage.title()).containsIgnoringCase(arg0);
     }
 
-    public static Performable assertContent(){
-        Target target = pageLocator.CONTENT_JAKARTA;
-        return Ensure.that(target).isDisplayed();
+    public static Performable assertContent(String arg0){
+        return Ensure.that(pageLocator.CONTENT_JAKARTA).hasTrimmedTextContent(arg0);
+    }
+
+    public static Performable searchDuck(String arg0){
+        return Task.where("{0} search'" + arg0 + "'",
+                Enter.theValue(arg0)
+                        .into(pageLocator.SEARCH_DUCK)
+                        .thenHit(Keys.ENTER));
+    }
+
+    public static Performable searchContentDuck(String arg0){
+        return Ensure.that(pageLocator.CONTENT_DUCK_JAKARTA).hasTrimmedTextContent(arg0);
     }
 }

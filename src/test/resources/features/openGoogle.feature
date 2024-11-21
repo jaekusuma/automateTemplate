@@ -1,3 +1,4 @@
+@Google
 Feature: Open Google
   Scenario: Open Google via web browse
     Given User Open google
