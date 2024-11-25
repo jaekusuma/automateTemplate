@@ -12,7 +12,7 @@ import pages.pageLocator;
 
 import static net.serenitybdd.core.Serenity.getDriver;
 
-public class function {
+public class functionWeb {
     public static Performable about(String search){
         return Task.where("{0} search '" + search + "'",
                 Enter.theValue(search)
