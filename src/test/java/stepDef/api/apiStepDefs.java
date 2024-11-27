@@ -11,7 +11,7 @@ public class apiStepDefs {
     }
 
     @Then("User get response {string} OK")
-    public void userGetResponse(String arg0) {
+    public void userGetResponse(String  arg0) {
         functionApi.getTheRespons(arg0);
     }
 }
