@@ -12,8 +12,14 @@ Feature: API reqress
     And Response body contain token "QpwL5tke4Pnpja7X4"
     And Validate valid login user schema
 
-  Scenario: Create User
+  Scenario: POST Create User
     Given Post create user with request body "createUser.json" to endpoint "/api/users"
     Then Status code should be 201 created
     And Response body contain name "morpheus" job "leader"
     And Validate create user json schema
+
+  Scenario: PATCH Update
+    Given Patch update user with id 1 with request body "updateUser.json" to endpoint "/api/users/"
+    Then Status code should be 200 OK
+    And Response body should contain name "Jahe" and job "SQA"
+    And Validate patch update json scheme

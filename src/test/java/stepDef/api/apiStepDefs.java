@@ -72,4 +72,21 @@ public class apiStepDefs {
         File json = new File(functionApi.JSON_SCHEME + "/postCreateUser.json");
         functionApi.assertJsonSchema(json);
     }
+
+    @Given("Patch update user with id {int} with request body {string} to endpoint {string}")
+    public void patchUpdateUserWithIdWithRequestBodyToEndpoint(int arg0, String arg1, String arg2) {
+        functionApi.updateUser(String.valueOf(arg0),arg1,arg2);
+    }
+
+    @And("Response body should contain name {string} and job {string}")
+    public void responseBodyShouldContainNameAndJob(String arg0, String arg1) {
+        functionApi.assertName(arg0);
+        functionApi.assertJob(arg1);
+    }
+
+    @And("Validate patch update json scheme")
+    public void validatePatchUpdateJsonScheme() {
+        File json = new File(functionApi.JSON_SCHEME + "/updateUser.json");
+        functionApi.assertJsonSchema(json);
+    }
 }

@@ -53,4 +53,9 @@ public class functionApi {
         SerenityRest.then().assertThat().body("job", equalTo(arg0));
     }
 
+    public static void updateUser(String arg0, String arg1, String arg2){
+        File json = new File(JSON_REQUEST + arg1);
+        SerenityRest.rest().given().contentType(ContentType.JSON).body(json).patch(URL + arg2 + arg0);
+    }
+
 }
