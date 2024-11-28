@@ -32,7 +32,7 @@ public class apiStepDefs {
 
     @Given("Post user login with request body {string} to endpoint {string}")
     public void postUserLoginWithValidJsonToEndpoint(String arg0, String arg1) {
-        functionApi.postLogin(arg0, arg1);
+        functionApi.postFunction(arg0, arg1);
     }
 
     @Then("Status code should be {int} OK")
@@ -48,6 +48,28 @@ public class apiStepDefs {
     @And("Validate valid login user schema")
     public void validateValidLoginUserSchema() {
         File json = new File(functionApi.JSON_SCHEME + "/postLogin.json");
+        functionApi.assertJsonSchema(json);
+    }
+
+    @Given("Post create user with request body {string} to endpoint {string}")
+    public void postCreateUserWithRequestBodyToEndpoint(String arg0, String arg1) {
+        functionApi.postFunction(arg0, arg1);
+    }
+
+    @Then("Status code should be {int} created")
+    public void statusCodeShouldBeCreated(int arg0) {
+        functionApi.getTheRespons(arg0);
+    }
+
+    @And("Response body contain name {string} job {string}")
+    public void responseBodyContainNameJob(String arg0, String arg1) {
+        functionApi.assertName(arg0);
+        functionApi.assertJob(arg1);
+    }
+
+    @And("Validate create user json schema")
+    public void validateCreateUserJsonSchema() {
+        File json = new File(functionApi.JSON_SCHEME + "/postCreateUser.json");
         functionApi.assertJsonSchema(json);
     }
 }

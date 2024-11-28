@@ -32,7 +32,7 @@ public class functionApi {
         SerenityRest.then().body("data.last_name", equalTo(lName));
     }
 
-    public static void postLogin(String arg0, String arg1){
+    public static void postFunction(String arg0, String arg1){
         File jsonFile = new File(JSON_REQUEST + arg0);
         SerenityRest.given().contentType(ContentType.JSON).body(jsonFile).post(URL + arg1);
     }
@@ -43,6 +43,14 @@ public class functionApi {
 
     public static void assertJsonSchema(File json){
         SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(json));
+    }
+
+    public static void assertName(String arg0){
+        SerenityRest.then().assertThat().body("name", equalTo(arg0));
+    }
+
+    public static void assertJob(String arg0){
+        SerenityRest.then().assertThat().body("job", equalTo(arg0));
     }
 
 }
